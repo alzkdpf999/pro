@@ -1,0 +1,41 @@
+package com.example.demo.entity;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import groovy.transform.builder.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Getter
+@Builder
+@Table(name="users")
+public class UserEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name= "user_id")
+	private int userId;
+	
+	@Column(name = "email", nullable = false, unique = true)
+    private String email;
+	
+	@Column(name = "name", nullable = false)
+    private String name;
+	
+	@Column(name = "passwd", nullable = false)
+    private String passwd;
+	
+	@Column(name= "create_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+}

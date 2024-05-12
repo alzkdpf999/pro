@@ -1,0 +1,12 @@
+*.jks
+*.properties
+SslConfig.java
+WebRtcConfig.java
+MainController.java
+**/kurento/
+dataChannel copy.js
+dataChannelChatting copy.js
+dataChannelFileUtil copy.js
+kurento-service copy.js
+mediaDevice copy.js
+participant copy.js
