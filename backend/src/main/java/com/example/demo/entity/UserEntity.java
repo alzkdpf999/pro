@@ -37,6 +37,9 @@ public class UserEntity {
 	@Column(name = "name", nullable = false)
     private String name;
 	
+	@Column(name = "user_role", nullable = false)
+    private String userRole;
+	
 	@Column(name = "passwd", nullable = false)
     private String passwd;
 	
