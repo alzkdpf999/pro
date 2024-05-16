@@ -18,9 +18,10 @@
     <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
     <fullyQualifiedTypeName name="lombok.Builder"/>
-    <fullyQualifiedTypeName name="com.example.demo.entity.UserEntity"/>
     <fullyQualifiedTypeName name="org.hibernate.annotations.DynamicInsert"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.example.demo.repository.JpaUserRepository"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.example.demo.entity.UserEntity"/>
 </qualifiedTypeNameHistroy>
