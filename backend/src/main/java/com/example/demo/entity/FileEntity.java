@@ -41,8 +41,11 @@ public class FileEntity {
     private String fileContType;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id",insertable = false, updatable = false)
 	private UserEntity user;
+	
+	@Column(name="user_id")
+	private Long userId;
 	
 	@Column(name= "save_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -29,10 +29,16 @@ public class UserRoomEntity {
 	private Long id;
 		
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id",insertable = false,updatable =  false)
 	private UserEntity user;
 	
 	@ManyToOne
-	@JoinColumn(name="room_id")
+	@JoinColumn(name="room_id",insertable = false,updatable =  false)
 	private RoomEntity room;
+	
+	@Column(name="user_id")
+	private Long userId;
+	
+	@Column(name="room_id")
+	private Long roomId;
 }
