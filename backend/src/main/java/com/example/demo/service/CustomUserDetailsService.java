@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.Collections;
 
+import com.example.demo.dto.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,20 +16,20 @@ import com.example.demo.repository.JpaUserRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private final JpaUserRepository userRepository;
+
     @Autowired
-    private JpaUserRepository userRepository;
+    public CustomUserDetailsService(JpaUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPasswd(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getUserRole().toUpperCase()))
-        );
+        UserEntity userEntity = userRepository.findByUserEmail(email).orElseThrow(()->{
+            return new UsernameNotFoundException("회원정보 찾을 수 없음");
+        });
+
+        return new CustomUserDetails(userEntity);
     }
 }
