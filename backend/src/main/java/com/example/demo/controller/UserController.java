@@ -34,20 +34,20 @@ public class UserController{
     public String loginAction(){
         return "loginPage";
     }
-    @PostMapping("/login")
-    public String loginAction(HttpServletRequest request, UserDto userDto){
-        UserEntity user = userService.login(userDto);
-        if(user == null){
-            return "/redirect:/login";
-        }
-        return "redirect:?";
-    }
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if(session != null){
-            session.invalidate();
-        }
-        return "redirect:/";
-    }
+    // @PostMapping("/login")
+    // public String loginAction(HttpServletRequest request, UserDto userDto){
+    //     UserEntity user = userService.login(userDto);
+    //     if(user == null){
+    //         return "/redirect:/login";
+    //     }
+    //     return "redirect:/";
+    // }
+    // @GetMapping("/logout")
+    // public String logout(HttpServletRequest request){
+    //     HttpSession session = request.getSession();
+    //     if(session != null){
+    //         session.invalidate();
+    //     }
+    //     return "redirect:/";
+    // }
 }
