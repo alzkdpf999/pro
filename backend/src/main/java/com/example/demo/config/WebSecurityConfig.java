@@ -22,9 +22,9 @@ public class WebSecurityConfig{
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/join","/login","/logout").permitAll()
-                        .requestMatchers("/teacher").hasRole("ROLE_TEACHER")
-                        .requestMatchers("/student").hasRole("ROLE_STUDENT")
+                        .requestMatchers("/","/join","/login","/logout").permitAll()
+                        // .requestMatchers("/teacher").hasRole("ROLE_TEACHER")
+                        // .requestMatchers("/student").hasRole("ROLE_STUDENT")
                         .anyRequest().authenticated()
                 );
         http
