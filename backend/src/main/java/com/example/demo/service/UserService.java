@@ -16,8 +16,8 @@ public class UserService {
 
     private final JpaUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    
     @Autowired
-
     public UserService(JpaUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
