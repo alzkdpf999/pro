@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.Collections;
 
-import com.example.demo.dto.CustomUserDetails;
+import com.example.demo.config.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
