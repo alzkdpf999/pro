@@ -21,7 +21,7 @@ ws.onopen = () => {
     initDataChannel();
 }
 
-
+console.log(locationHost);
 
 var initDataChannel = function () {
     dataChannel.init();
@@ -184,6 +184,11 @@ function onExistingParticipants(msg) {
                 onmessage: dataChannel.handleDataChannelMessageReceived,
                 onerror: dataChannel.handleDataChannelError
             },
+            //configuration: {
+                //iceServers: [
+                  //  {urls: 'turn:54.180.102.69:3478?transport=udp', username: 'test', credential: 'test'}
+                //]
+            //}
         };
 
         participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options,
@@ -222,6 +227,11 @@ function receiveVideo(sender) {
             onmessage: dataChannel.handleDataChannelMessageReceived,
             onerror: dataChannel.handleDataChannelError
         },
+        //configuration: {
+//iceServers: [
+                   // {urls: 'turn:54.180.102.69:3478?transport=udp', username: 'test', credential: 'test'}
+               // ]
+           // }
         
     }
 
@@ -270,16 +280,15 @@ window.onbeforeunload = function () {
 // 결국 replace  되기 때문에 얘도 onbeforeunload 를 탄다
 $('#button-leave').on('click', function () {
     sendDataChannelMessage(" 님이 떠나셨습니다ㅠㅠ");
+    leftUserfunc();
     location.replace('/');
 });
 
 function leaveRoom(type) {
     if (type !== 'error') { // type 이 error 이 아닐 경우에만 퇴장 메시지 전송
-        // console.log("이거 확인")
-
+        sendDataChannelMessage(" 님이 떠나셨습니다ㅠㅠ");
     }
-
-    leftUserfunc()
+    setTimeout(leftUserfunc, 10);
 }
 
 function stopRecDownload(msg) {

@@ -33,7 +33,8 @@
                     <div class="row justify-content-md-center">
                         <img class="col-md-1" src="/images/webrtc/screen-share-on.svg" width="24px" height="24px" alt=""
                             id="screenShareBtn" data-flag="false" onclick="screenShare()">
-                        <img class="col-md-1" src="/images/webrtc/screen-share-on.svg" width="24px" height="24px" alt="" id="chroma"
+                        <!-- 여기는 녹화부분입니다 -->
+                        <img class="col-md-1" src="C:\Users\user\Desktop\backend\backend\src\main\resources\static\images\webrtc\screen-share-on.svg" width="24px" height="24px" alt="" id="chroma"
                          onclick="startChroma()">
                         <div class="row">
                             <div class="col-md-12">
@@ -42,8 +43,10 @@
                                     name="mode" value="audio-only"> Audio only
                             </div>
                         </div>
-                        <img class="col-md-1" src="/images/webrtc/screen-share-on.svg" width="24px" height="24px" alt="" id="rec"
+                        <img class="col-md-1" src="C:\Users\user\Desktop\backend\backend\src\main\resources\static\images\webrtc\screen-share-on.svg" width="24px" height="24px" alt="" id="rec"
                          onclick="stop()">
+
+                        <!-- 여기까지 녹화부분입니다.-->
                         <img src="/images/webrtc/video-on.svg" class="col-md-1 localVideoToggle" width="24px"
                             height="24px" alt="" id="videoBtn" data-flag="true">
                         <img src="/images/webrtc/audio-speaker-on.svg" class="col-md-1 localAudioToggle" width="24px"

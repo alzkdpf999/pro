@@ -29,10 +29,11 @@ const dataChannelFileUtil = {
         }else{
         	console.log(file);
         }
-	
+        
         var formData = new FormData();
         formData.append('file', file);
         formData.append('roomId', roomId);
+        console.log("asdasd",roomId);
 		console.log(formData);
         let option = {
             method: 'POST',

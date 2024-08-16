@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.dto.FileDto;
+import com.example.demo.entity.FileEntity;
 import com.example.demo.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,18 +46,21 @@ public class FileController {
 	@ResponseBody
 	public ResponseEntity<Object> Upload(@RequestParam("file") MultipartFile file, @RequestParam("roomId") String roomId)
 			throws Exception {
-
+		String fileName =null;
 		if (!file.isEmpty()) {
 			try {
-				String fileName = fileService.fileUpload(file,roomId);
+//				String fileName = fileService.fileUpload(file,roomId);
+				fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
 				file.transferTo(new File(fileName));
 				log.info("파일 이름 : {}, 타입 : {}", fileName, file.getContentType());
 			} catch (Exception e) {
+				log.info("실행했어");
 				return new ResponseEntity<>("실패", HttpStatus.BAD_REQUEST);
 			}
 		}
 		// 나중에 db 이용이 필요함
-		return new ResponseEntity<>("업로드 성공", HttpStatus.OK);
+		FileDto fileDto = FileDto.builder().fileName(fileName).type(file.getContentType()).build();
+		return new ResponseEntity<>(fileDto, HttpStatus.OK);
 	}
 
 	@GetMapping("/download/{name}")

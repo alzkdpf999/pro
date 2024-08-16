@@ -46,4 +46,7 @@
     <fullyQualifiedTypeName name="com.example.demo.dto.AttendRoomResponse"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="com.example.demo.dto.FileDto"/>
+    <fullyQualifiedTypeName name="org.kurento.client.WebRtcEndpoint"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
 </qualifiedTypeNameHistroy>
