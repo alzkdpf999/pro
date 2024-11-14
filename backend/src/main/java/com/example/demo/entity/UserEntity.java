@@ -1,9 +1,14 @@
 package com.example.demo.entity;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @DynamicInsert
 @Table(name="users")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "user_id")
@@ -47,4 +52,23 @@ public class UserEntity {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return List.of(new SimpleGrantedAuthority("user"));
+	}
+	
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return passwd;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return email;
+	}
+
 }
