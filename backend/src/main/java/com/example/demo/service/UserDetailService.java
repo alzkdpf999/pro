@@ -8,12 +8,12 @@
  import com.example.demo.repository.JpaUserRepository;
 
  @Service
- public class CustomUserDetailsService implements UserDetailsService {
+ public class UserDetailService implements UserDetailsService {
 
      private final JpaUserRepository userRepository;
 
      @Autowired
-     public CustomUserDetailsService(JpaUserRepository userRepository) {
+     public UserDetailService(JpaUserRepository userRepository) {
          this.userRepository = userRepository;
      }
 
