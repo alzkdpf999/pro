@@ -22,9 +22,9 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     
     @Autowired
-    public UserService(JpaUserRepository userRepository, BCryptPasswordEncoder bcryptpasswordEncoder) {
+    public UserService(JpaUserRepository userRepository, BCryptPasswordEncoder bcryptPasswordEncoder) {
         this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bcryptpasswordEncoder;
+        this.bCryptPasswordEncoder = bcryptPasswordEncoder;
     }
 
     public Long join(UserDto userDto) {
