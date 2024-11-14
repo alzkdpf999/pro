@@ -50,7 +50,6 @@ public class WebSecurityConfig{
                 );
         http
                 .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/login")
                 );
