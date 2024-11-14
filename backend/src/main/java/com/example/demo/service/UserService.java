@@ -3,6 +3,9 @@ package com.example.demo.service;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.JpaUserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,39 +13,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
 
 
     private final JpaUserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     
     @Autowired
-    public UserService(JpaUserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(JpaUserRepository userRepository, BCryptPasswordEncoder bcryptpasswordEncoder) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.bCryptPasswordEncoder = bcryptpasswordEncoder;
     }
 
-    public void join(UserDto userDto) {
+    public Long join(UserDto userDto) {
 
         UserEntity user = UserEntity.builder()
                 .email(userDto.getEmail())
-                .passwd(passwordEncoder.encode(userDto.getPasswd()))
+                .passwd(bCryptPasswordEncoder.encode(userDto.getPasswd()))
                 .name(userDto.getName())
                 .build();
 
-        userRepository.save(user);
+        return userRepository.save(user).getUserId();
     }
 
-    public UserEntity login(UserDto userDto) {
-        String userEmail = userDto.getEmail();
-        Optional<UserEntity> getUser = userRepository.findByUserEmail(userEmail);
-        if (getUser.isPresent()) {
-            UserEntity user = getUser.get();
-            if (user.getPasswd().equals(userDto.getPasswd())) {
-                return user;
-            }
-        }
-        return null;
-    }
 }
