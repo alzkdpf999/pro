@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.demo.repository.JpaUserRepository;
-import com.example.demo.service.CustomUserDetailsService;
+import com.example.demo.service.UserDetailService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,10 +22,10 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig{
-	private final CustomUserDetailsService userService;
+	private final UserDetailService userService;
 	
     @Autowired
-    public WebSecurityConfig(CustomUserDetailsService userService) {
+    public WebSecurityConfig(UserDetailService userService) {
         this.userService = userService;
     }
 
@@ -59,7 +59,7 @@ public class WebSecurityConfig{
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService userDetailService)
+    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailService userDetailService)
         throws Exception{
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userService) // 사용자 정보 서비스 설정
